@@ -1,9 +1,15 @@
 // index, show, store, update, destroy
 
 const Spot = require('../models/Spot');
-const User = require('../models/User');
+const User = require('../models/Users');
 
 module.exports = {
+    async index (req, res) {
+        let { tech } = req.query;
+        const spots = await Spot.find({ techs: tech})
+
+        return res.json(spots);
+    },
     async store(req, res) {
         const { filename} = req.file;
         const { company, techs, price } = req.body;
