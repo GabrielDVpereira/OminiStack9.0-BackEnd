@@ -1,7 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 const app = express();
+const path = require('path');
 
 mongoose.connect('mongodb+srv://oministack:gabriel299@cluster0-ldd1j.mongodb.net/semana09?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -18,7 +20,9 @@ mongoose.connect('mongodb+srv://oministack:gabriel299@cluster0-ldd1j.mongodb.net
 //req.body = acessar corpo de uma requisição post
 
 //Indicamos ao express que requisições posts serão realizadas por metodo post
+app.use(cors());
 app.use(express.json());
+app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads'))); //Forma como o express retorna arquivos estáticos
 app.use(routes);
 
 app.listen(3333);
