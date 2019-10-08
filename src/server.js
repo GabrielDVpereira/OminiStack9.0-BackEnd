@@ -25,4 +25,4 @@ app.use(express.json());
 app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads'))); //Forma como o express retorna arquivos estáticos
 app.use(routes);
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
