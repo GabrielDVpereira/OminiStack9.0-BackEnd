@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //Descrição de quais campos a tabela de usuários irá conter
 const BookingSchema = new mongoose.Schema({
-    data: String,
+    date: String,
     aproved: Boolean,
     user: {
         type: mongoose.Schema.Types.ObjectId,
