@@ -16,12 +16,12 @@ module.exports = {
 
         await booking.populate('spot').populate('user').execPopulate(); //cria a relacão de user com spot
 
-        const ownerSocket = req.connectedUsers[booking.spot.user]; //extraimos o user id apos 
-
+        const ownerSocket = req.connectedUsers[booking.spot.user]; //extraimos o user id apos
+        console.log(booking.spot.user);
         if(ownerSocket){
             req.io.to(ownerSocket).emit('booking_request', booking)
         }
-        
+
         return res.json(booking);
     }
 }

@@ -24,16 +24,16 @@ const connectedUsers = {}; //não recomendado guardar usuários em variáveis, p
 //recomendação: redis
 
 //ouve de todos os usuário logados na aplicação
-io.on('connection', socket => { //socket representa a conexão com o usuário 
+io.on('connection', socket => { //socket representa a conexão com o usuário
     const { user_id } = socket.handshake.query;
-
     connectedUsers[user_id] = socket.id; // relacionando o id de usuário com sua conexão com o socket
+    console.log(connectedUsers)
 });
 
 
 app.use((req, res, next) => {
     req.io = io //passando o io para todas as rotas usando middlewares, todas as rotas tem acesso ao req
-    req.connectedUsers = connectedUsers; 
+    req.connectedUsers = connectedUsers;
 
     return next();
 })
